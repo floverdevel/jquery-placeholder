@@ -68,21 +68,3 @@
     };
 })( jQuery );
 
-/**
- * we can override built-in functions
- * hum, tricky
- */
-/*
-(function( $ ) {
-    $.placeholder = function(options) {
-        console.log('jQuery.placeholder invoked');
-    }
-})(jQuery);
-*/
-/*
-(function( $ ) {
-    $.ajax = function(options) {
-        console.log('jQuery.ajax invoked');
-    }
-})(jQuery);
-*/
