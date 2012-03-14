@@ -18,10 +18,7 @@
     $.fn.placeholder = function(options) {
         
         console.log('jQuery.fn.placeholder invoked');
-        console.log($);
 
-        var s = $('<span />');
-        console.log(s);
         
         // valeurs par défaut, on les étend par les options reçus en paramètre
         var settings = $.extend({
@@ -35,8 +32,8 @@
             console.log(this);
             console.log($this);
             
-            span = $this.clone();
-            span.attr('id', $this.attr('id') + '_spanned'); 
+            var s = $('<span />');
+            s.attr('id', $this.attr('id') + '_spanned'); 
             console.log(span);
 
             _render($this);
