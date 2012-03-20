@@ -1,7 +1,7 @@
 /**
  * simule un placeholder html5 en utilisant des techniques de xhtml
  * s'applique sur un selecteur css3 (par exemple : $('input[type=text],input[type=password]').placeholder();
- * 
+ *
  * @todo: les options recoivent un array d'objet
  *  $('.placeholded').placeholder({
  *     'firstname': 'Entrez votre prénom',
@@ -16,25 +16,19 @@
  */
 (function( $ ) {
     $.fn.placeholder = function(options) {
-        
-        console.log('jQuery.fn.placeholder invoked');
 
-        
         // valeurs par défaut, on les étend par les options reçus en paramètre
         var settings = $.extend({
             'background' : '#fff',
             'objects' : 'input[type=text], input[type=password]',
             'debug' : 'none'
         }, options);
-        
+
         return this.each(function() {
             $this = $(this);
-            console.log(this);
-            console.log($this);
-            
+
             var s = $('<span />');
-            s.attr('id', $this.attr('id') + '_spanned'); 
-            console.log(span);
+            s.attr('id', $this.attr('id') + '_spanned');
 
             _render($this);
 
@@ -42,7 +36,7 @@
             $this.keyup(function() {
                 _render($(this));
             });
-        
+
             // lorsqu'on sort d'un champ
             $this.focusout(function() {
                 _render($(this));
@@ -59,7 +53,6 @@
             else {
                 obj.css('background', settings.background);
             }
-            console.log(obj);
         }
 
     };
