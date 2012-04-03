@@ -2,16 +2,22 @@
  * simule un placeholder html5 en utilisant des techniques de xhtml
  * s'applique sur un selecteur css3 (par exemple : $('input[type=text],input[type=password]').placeholder();
  *
- * @todo: les options recoivent un array d'objet
+ * @exemple: tous les éléments de classe placeholded auront le même texte, soit : «Remplissez ce champ»
  *  $('.placeholded').placeholder({
- *     'firstname': 'Entrez votre prénom',
- *     'lastname': 'Entrez votre nom de famille',
- *     'username': 'Choisissez un nom d\'usager'
+ *     'background': '#000',
+ *     'text': 'Remplissez ce champ'
  * });
- * @todo: trouver les labels associés au input et les cacher si spécifié dans les options
+ *
+ * @exemple: chaque élément de classe placeholded aura son texte spécifié par l'objet text (mapping entre l'id de l'élément et la clé de l'objet)
+ *  $('.placeholded').placeholder({
+ *     'background': '#000',
+ *     'text' : {
+ *         'firstname': 'Entrez votre prénom',
+ *         'lastname': 'Entrez votre nom de famille',
+ *         'username': 'Choisissez un nom d\'usager'
+ *     }
+ * });
  * @todo: générer un span en position en position absolute pour qu'il soit en arrière du input
- * @todo: changer le background du input en none
- * @todo: recevoir dans les options la couleur de fond du input pour lorsqu'on veut cacher le placeholder
  * @todo: copier le style du input pour que le span en arrière ait la même grandeur
  */
 (function( $ ) {
@@ -20,15 +26,19 @@
         // valeurs par défaut, on les étend par les options reçus en paramètre
         var settings = $.extend({
             'background' : '#fff',
-            'objects' : 'input[type=text], input[type=password]',
-            'debug' : 'none'
+            'text' : ''
         }, options);
 
         return this.each(function() {
             $this = $(this);
 
             var s = $('<span />');
-            s.attr('id', $this.attr('id') + '_spanned');
+            s.removeAttr('id');
+            s.css('width', $this.css('width'));
+            s.css('height', $this.css('height'));
+            s.css('top', $this.css('top'));
+            s.css('left', $this.css('left'));
+            s.html(settings.text['object' == typeof settings.text ? $this.attr('id')] : settings.text);
 
             _render($this);
 
