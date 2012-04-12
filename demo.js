@@ -3,12 +3,14 @@
  */
 $(document).ready(function() {
 
-    $('#left input[type=text], #left input[type=password]').placeholder({
+    $('#xhtml input[type=text], #xhtml input[type=password]').placeholder({
+        'background' : '#ff0000',
+        'color' : '#00ff00',
         'text' : {
-            'username' : 'nom d\'utilisateur',
-            'password' : 'mot de passe',
-            'lastname' : 'nom de famille',
-            'firstname' : 'prénom'
+            'username1' : 'Doit &ecirc;tre unique',
+            'password1' : 'mot de passe',
+            'lastname1' : 'nom de famille',
+            'firstname1' : 'pr&eacute;nom'
         }
     });
 });
