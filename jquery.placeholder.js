@@ -35,40 +35,42 @@
         return this.each(function() {
             $this = $(this);
 
-            var s = $('<label />');
+            var s = $('<span />');
+            s.insertBefore($this);
+            s.addClass('floverdevel-jquery-placeholder');
+
             s.css('width', $this.css('width'));
             s.css('height', $this.css('height'));
-            s.css('top', $this.offset().top);
-            s.css('left', $this.offset().left);
+            //s.css('top', $this.parent().top - $this.offsetParent().offset().top);
+            //s.css('left', $this.parent().left - $this.offsetParent().offset().left);
 
-            s.css('font-familly', $this.css('font-familly'));
-            s.css('font-size', $this.css('font-size'));
-            s.css('font-weigth', $this.css('font-weigth'));
-            s.css('font-style', $this.css('font-style'));
+            //console.log($this.offset().top);
+            //console.log($this.offsetParent().offset().top);
+
             s.css('line-height', $this.css('line-height'));
 
-            s.css('margin-top',    $this.css('margin-top'));
-            s.css('margin-left',   $this.css('margin-left'));
-            s.css('margin-right',  $this.css('margin-right'));
-            s.css('margin-bottom', $this.css('margin-bottom'));
+            s.css('font-familly', $this.css('font-familly'));
+            s.css('font-size',    $this.css('font-size'));
+            s.css('font-style', 'italic');
+            s.css('font-weigth',  $this.css('font-weigth'));
+
+            s.css('margin-top',    $this.css('border-top-width'));
+            s.css('margin-left',   $this.css('border-left-width'));
+            s.css('margin-right',  $this.css('border-right-width'));
+            s.css('margin-bottom', $this.css('border-bottom-width'));
 
             s.css('padding-top',    $this.css('padding-top'));
             s.css('padding-left',   $this.css('padding-left'));
             s.css('padding-right',  $this.css('padding-right'));
             s.css('padding-bottom', $this.css('padding-bottom'));
 
-            s.css('border-top-width',    $this.css('border-top-width'));
-            s.css('border-left-width',   $this.css('border-left-width'));
-            s.css('border-right-width',  $this.css('border-right-width'));
-            s.css('border-bottom-width', $this.css('border-bottom-width'));
+//            s.css('border-color', '#ff0000');
+//            s.css('border-width', '1');
 
             //s.css('overflow', 'hidden');
             //s.css('text-overflow', 'clip');
-
-            s.css('position', 'absolute');
+            //s.css('display', 'inline-block');
             s.css('color', settings.color);
-            //$this.parent().prepend(s);
-            //$this.parent().append(s);
 
             var text = '';
             if ('object' == typeof settings.text) {
@@ -77,9 +79,11 @@
                 text = settings.text;
             }
 
-            //s.insertAfter($this);
-            s.insertBefore($this);
             s.html(text);
+            $this.css('position', 'relative');
+            var left = Number(s.width()) + Number(s.css('margin-left').split('px')[0]) + Number(s.css('margin-right').split('px')[0]) + Number(s.css('border-left-width').split('px')[0]) + Number(s.css('border-right-width').split('px')[0]);
+            console.log(left);
+            $this.css('left', '-' + (left) + 'px');
             //s.show();
 
             _render($this);
