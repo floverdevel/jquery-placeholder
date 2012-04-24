@@ -27,7 +27,7 @@
 
         // valeurs par défaut, on les étend par les options reçus en paramètre
         var settings = $.extend({
-            'background' : '#fff',
+            'background' : '',
             'color' : '#a0a0a0',
             'text' : ''
         }, options);
@@ -41,11 +41,6 @@
 
             s.css('width', $this.css('width'));
             s.css('height', $this.css('height'));
-            //s.css('top', $this.parent().top - $this.offsetParent().offset().top);
-            //s.css('left', $this.parent().left - $this.offsetParent().offset().left);
-
-            //console.log($this.offset().top);
-            //console.log($this.offsetParent().offset().top);
 
             s.css('line-height', $this.css('line-height'));
 
@@ -64,12 +59,6 @@
             s.css('padding-right',  $this.css('padding-right'));
             s.css('padding-bottom', $this.css('padding-bottom'));
 
-//            s.css('border-color', '#ff0000');
-//            s.css('border-width', '1');
-
-            //s.css('overflow', 'hidden');
-            //s.css('text-overflow', 'clip');
-            //s.css('display', 'inline-block');
             s.css('color', settings.color);
 
             var text = '';
@@ -82,9 +71,7 @@
             s.html(text);
             $this.css('position', 'relative');
             var left = Number(s.width()) + Number(s.css('margin-left').split('px')[0]) + Number(s.css('margin-right').split('px')[0]) + Number(s.css('border-left-width').split('px')[0]) + Number(s.css('border-right-width').split('px')[0]);
-            console.log(left);
             $this.css('left', '-' + (left) + 'px');
-            //s.show();
 
             _render($this);
 
